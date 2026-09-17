@@ -40,6 +40,8 @@ Do not silently change this contract. Record a proposed change below and coordin
 
 Newest entries first.
 
+- **2026-09-16 — Student A:** Initialized Git after receiving permission and split work into scoped commits: `6046593` coordination, `2d26014` schemas/parsers, `deb6376` detection, `6b6a6d3` API contract, and `563b9f0` tests. The repository has no remote yet; public GitHub publication remains Student C/team work.
+- **2026-09-16 — Student A:** Reconciled Trello into distinct A1–A8 cards with complete Goal, Acceptance Criteria, Dependencies, and Blocks fields. All eight were moved to Review / Integration after local verification; none were marked Done. A1 also has a completed Acceptance Criteria checklist as the verification exemplar.
 - **2026-09-16 — Student A:** Backend implementation reached review-ready status. Added the FastAPI app, normalized event/incident/relationship models, auth/process/network parsers, deterministic four-stage correlation, sample analysis, JSON Schema export, and 16 behavioral tests. Verification: `ruff check backend` passed; `pytest --cov=app` passed 16/16 with 97% coverage. The API contract remains unchanged.
 - **2026-09-16 — Student A:** Trello access confirmed for Peyton T Tran. Reused the existing Traceback project board and moved the three pre-existing aggregate A cards to In Progress while work was active. The connector exposes no member-assignment operation, so no real member assignment is claimed.
 - **2026-09-16 — Student A:** Claimed the Student A backend/detection workstream. Initialized backend/API contract work in an otherwise empty workspace. Student B and C paths remain unclaimed by A.
@@ -49,5 +51,5 @@ Newest entries first.
 - Backend: implementation complete; awaiting cross-workstream review/integration (Student A).
 - Frontend: awaiting Student B.
 - Datasets/CI/Docker/end-to-end QA: awaiting Student C.
-- Public GitHub repository: not yet configured; local `.git` was pre-created read-only and is not a valid repository in this environment.
-- Trello: [Traceback — Cyber Incident Timeline Visualizer](https://trello.com/b/i3lpkJwJ/traceback-cyber-incident-timeline-visualizer); Student A cards are being handed to Review / Integration after verified acceptance criteria.
+- Public GitHub repository: local Git is initialized with scoped commits; no remote/public repository is configured yet.
+- Trello: [Traceback — Cyber Incident Timeline Visualizer](https://trello.com/b/i3lpkJwJ/traceback-cyber-incident-timeline-visualizer); A1–A8 are in Review / Integration after verified acceptance criteria.
