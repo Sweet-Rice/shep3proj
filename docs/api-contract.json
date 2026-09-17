@@ -1,0 +1,379 @@
+{
+  "version": "0.1.0",
+  "endpoints": {
+    "GET /api/health": {
+      "response": {
+        "status": "healthy"
+      }
+    },
+    "POST /api/analyze": {
+      "request_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "sample_id": {
+            "anyOf": [
+              {
+                "pattern": "^[a-z0-9][a-z0-9_-]*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Sample Id"
+          },
+          "records": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Records"
+          }
+        },
+        "title": "AnalysisRequest",
+        "type": "object"
+      },
+      "response_schema": {
+        "$defs": {
+          "DetectionStage": {
+            "enum": [
+              "brute_force",
+              "account_compromise",
+              "suspicious_execution",
+              "possible_exfiltration"
+            ],
+            "title": "DetectionStage",
+            "type": "string"
+          },
+          "EventSource": {
+            "enum": [
+              "auth",
+              "process",
+              "network"
+            ],
+            "title": "EventSource",
+            "type": "string"
+          },
+          "Incident": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "title": "Id",
+                "type": "string"
+              },
+              "title": {
+                "title": "Title",
+                "type": "string"
+              },
+              "severity": {
+                "$ref": "#/$defs/IncidentSeverity"
+              },
+              "score": {
+                "maximum": 5,
+                "minimum": 1,
+                "title": "Score",
+                "type": "integer"
+              },
+              "entities": {
+                "$ref": "#/$defs/IncidentEntities"
+              },
+              "stages": {
+                "items": {
+                  "$ref": "#/$defs/DetectionStage"
+                },
+                "title": "Stages",
+                "type": "array"
+              },
+              "event_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Event Ids",
+                "type": "array"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "severity",
+              "score",
+              "entities",
+              "stages",
+              "event_ids"
+            ],
+            "title": "Incident",
+            "type": "object"
+          },
+          "IncidentEntities": {
+            "additionalProperties": false,
+            "properties": {
+              "source_ips": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Source Ips",
+                "type": "array"
+              },
+              "users": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Users",
+                "type": "array"
+              },
+              "hosts": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Hosts",
+                "type": "array"
+              },
+              "processes": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Processes",
+                "type": "array"
+              },
+              "destination_ips": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Destination Ips",
+                "type": "array"
+              }
+            },
+            "title": "IncidentEntities",
+            "type": "object"
+          },
+          "IncidentSeverity": {
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ],
+            "title": "IncidentSeverity",
+            "type": "string"
+          },
+          "NormalizedEvent": {
+            "additionalProperties": false,
+            "description": "Common event shape consumed by all deterministic detection rules.",
+            "properties": {
+              "id": {
+                "maxLength": 100,
+                "minLength": 1,
+                "title": "Id",
+                "type": "string"
+              },
+              "timestamp": {
+                "format": "date-time",
+                "title": "Timestamp",
+                "type": "string"
+              },
+              "source": {
+                "$ref": "#/$defs/EventSource"
+              },
+              "event_type": {
+                "maxLength": 100,
+                "minLength": 1,
+                "title": "Event Type",
+                "type": "string"
+              },
+              "user": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "User"
+              },
+              "src_ip": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Src Ip"
+              },
+              "dst_ip": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Dst Ip"
+              },
+              "host": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Host"
+              },
+              "process": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Process"
+              },
+              "bytes_out": {
+                "anyOf": [
+                  {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Bytes Out"
+              },
+              "severity": {
+                "default": 1,
+                "maximum": 5,
+                "minimum": 1,
+                "title": "Severity",
+                "type": "integer"
+              },
+              "raw": {
+                "title": "Raw",
+                "type": "string"
+              },
+              "metadata": {
+                "additionalProperties": true,
+                "title": "Metadata",
+                "type": "object"
+              }
+            },
+            "required": [
+              "id",
+              "timestamp",
+              "source",
+              "event_type",
+              "raw"
+            ],
+            "title": "NormalizedEvent",
+            "type": "object"
+          },
+          "Relationship": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "title": "Id",
+                "type": "string"
+              },
+              "source": {
+                "title": "Source",
+                "type": "string"
+              },
+              "target": {
+                "title": "Target",
+                "type": "string"
+              },
+              "relationship_type": {
+                "$ref": "#/$defs/RelationshipType"
+              },
+              "reason": {
+                "title": "Reason",
+                "type": "string"
+              },
+              "event_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Event Ids",
+                "type": "array"
+              }
+            },
+            "required": [
+              "id",
+              "source",
+              "target",
+              "relationship_type",
+              "reason"
+            ],
+            "title": "Relationship",
+            "type": "object"
+          },
+          "RelationshipType": {
+            "enum": [
+              "authenticated_as",
+              "authenticated_on",
+              "executed_on",
+              "connected_to",
+              "preceded_by",
+              "correlated_with"
+            ],
+            "title": "RelationshipType",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/$defs/NormalizedEvent"
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "incidents": {
+            "items": {
+              "$ref": "#/$defs/Incident"
+            },
+            "title": "Incidents",
+            "type": "array"
+          },
+          "relationships": {
+            "items": {
+              "$ref": "#/$defs/Relationship"
+            },
+            "title": "Relationships",
+            "type": "array"
+          }
+        },
+        "required": [
+          "events",
+          "incidents",
+          "relationships"
+        ],
+        "title": "AnalysisResponse",
+        "type": "object"
+      }
+    }
+  }
+}

