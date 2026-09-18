@@ -1,0 +1,204 @@
+{
+  "events": [
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "db-02",
+      "id": "bf-001",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for temp-admin from 198.51.100.5",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "198.51.100.5",
+      "timestamp": "2026-09-17T14:00:00Z",
+      "user": "temp-admin"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "db-02",
+      "id": "bf-002",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for temp-admin from 198.51.100.5",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "198.51.100.5",
+      "timestamp": "2026-09-17T14:00:09Z",
+      "user": "temp-admin"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "db-02",
+      "id": "bf-003",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for temp-admin from 198.51.100.5",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "198.51.100.5",
+      "timestamp": "2026-09-17T14:00:18Z",
+      "user": "temp-admin"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "db-02",
+      "id": "bf-004",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for temp-admin from 198.51.100.5",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "198.51.100.5",
+      "timestamp": "2026-09-17T14:00:27Z",
+      "user": "temp-admin"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "db-02",
+      "id": "bf-005",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for temp-admin from 198.51.100.5",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "198.51.100.5",
+      "timestamp": "2026-09-17T14:00:36Z",
+      "user": "temp-admin"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "process_start",
+      "host": "db-02",
+      "id": "bf-006",
+      "metadata": {
+        "command_line": "bash --login",
+        "parser": "process"
+      },
+      "process": "bash",
+      "raw": "Unrelated legitimate process on db-02, different actor",
+      "severity": 2,
+      "source": "process",
+      "src_ip": null,
+      "timestamp": "2026-09-17T14:01:00Z",
+      "user": "dba"
+    }
+  ],
+  "incidents": [
+    {
+      "entities": {
+        "destination_ips": [],
+        "hosts": [
+          "db-02"
+        ],
+        "processes": [],
+        "source_ips": [
+          "198.51.100.5"
+        ],
+        "users": [
+          "temp-admin"
+        ]
+      },
+      "event_ids": [
+        "bf-001",
+        "bf-002",
+        "bf-003",
+        "bf-004",
+        "bf-005"
+      ],
+      "id": "INC-001",
+      "score": 2,
+      "severity": "MEDIUM",
+      "stages": [
+        "brute_force"
+      ],
+      "title": "Potential credential compromise on db-02"
+    }
+  ],
+  "relationships": [
+    {
+      "event_ids": [
+        "bf-001",
+        "bf-002",
+        "bf-003",
+        "bf-004",
+        "bf-005"
+      ],
+      "id": "rel-INC-001-001",
+      "reason": "Repeated authentication attempts targeted the same account.",
+      "relationship_type": "authenticated_as",
+      "source": "ip:198.51.100.5",
+      "target": "user:temp-admin"
+    },
+    {
+      "event_ids": [
+        "bf-001"
+      ],
+      "id": "rel-INC-001-002",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:bf-001",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "bf-002"
+      ],
+      "id": "rel-INC-001-003",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:bf-002",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "bf-003"
+      ],
+      "id": "rel-INC-001-004",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:bf-003",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "bf-004"
+      ],
+      "id": "rel-INC-001-005",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:bf-004",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "bf-005"
+      ],
+      "id": "rel-INC-001-006",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:bf-005",
+      "target": "incident:INC-001"
+    }
+  ]
+}

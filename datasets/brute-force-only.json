@@ -1,0 +1,8 @@
+[
+  {"id":"bf-001","timestamp":"2026-09-17T14:00:00Z","source":"auth","action":"login_failed","username":"temp-admin","source_ip":"198.51.100.5","hostname":"db-02","raw":"Failed SSH login for temp-admin from 198.51.100.5"},
+  {"id":"bf-002","timestamp":"2026-09-17T14:00:09Z","source":"auth","action":"login_failed","username":"temp-admin","source_ip":"198.51.100.5","hostname":"db-02","raw":"Failed SSH login for temp-admin from 198.51.100.5"},
+  {"id":"bf-003","timestamp":"2026-09-17T14:00:18Z","source":"auth","action":"login_failed","username":"temp-admin","source_ip":"198.51.100.5","hostname":"db-02","raw":"Failed SSH login for temp-admin from 198.51.100.5"},
+  {"id":"bf-004","timestamp":"2026-09-17T14:00:27Z","source":"auth","action":"login_failed","username":"temp-admin","source_ip":"198.51.100.5","hostname":"db-02","raw":"Failed SSH login for temp-admin from 198.51.100.5"},
+  {"id":"bf-005","timestamp":"2026-09-17T14:00:36Z","source":"auth","action":"login_failed","username":"temp-admin","source_ip":"198.51.100.5","hostname":"db-02","raw":"Failed SSH login for temp-admin from 198.51.100.5"},
+  {"id":"bf-006","timestamp":"2026-09-17T14:01:00Z","source":"process","process_name":"bash","command_line":"bash --login","username":"dba","hostname":"db-02","raw":"Unrelated legitimate process on db-02, different actor"}
+]

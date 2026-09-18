@@ -1,0 +1,9 @@
+[
+  {"id":"bb-001","timestamp":"2026-09-17T09:00:00Z","source":"auth","action":"login_success","username":"alice","source_ip":"10.4.4.4","hostname":"ws-14","raw":"Successful badge+SSO login for alice from 10.4.4.4"},
+  {"id":"bb-002","timestamp":"2026-09-17T09:00:05Z","source":"process","process_name":"sshd","command_line":"sshd: alice@pts/0","username":"alice","hostname":"ws-14","raw":"New process sshd on ws-14"},
+  {"id":"bb-003","timestamp":"2026-09-17T09:02:30Z","source":"network","source_ip":"10.4.4.4","destination_ip":"10.4.0.1","hostname":"ws-14","bytes_sent":4096,"raw":"4 KB DNS lookup from ws-14"},
+  {"id":"bb-004","timestamp":"2026-09-17T09:15:00Z","source":"auth","action":"login_failed","username":"alice","source_ip":"10.4.4.4","hostname":"ws-14","raw":"Single mistyped password for alice from 10.4.4.4"},
+  {"id":"bb-005","timestamp":"2026-09-17T09:15:07Z","source":"auth","action":"login_success","username":"alice","source_ip":"10.4.4.4","hostname":"ws-14","raw":"Successful retry login for alice from 10.4.4.4"},
+  {"id":"bb-006","timestamp":"2026-09-17T09:20:00Z","source":"process","process_name":"chrome","command_line":"chrome --profile-directory=Default","username":"alice","hostname":"ws-14","raw":"New process chrome on ws-14"},
+  {"id":"bb-007","timestamp":"2026-09-17T09:25:00Z","source":"network","source_ip":"10.4.4.4","destination_ip":"142.250.72.14","hostname":"ws-14","bytes_sent":153600,"raw":"150 KB HTTPS request from ws-14"}
+]
