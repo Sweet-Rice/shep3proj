@@ -10,4 +10,7 @@ venv/
 node_modules/
 dist/
 .DS_Store
+.integration-venv/
+test-results/
+playwright-report/
 

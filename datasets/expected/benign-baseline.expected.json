@@ -1,0 +1,129 @@
+{
+  "events": [
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_success",
+      "host": "ws-14",
+      "id": "bb-001",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Successful badge+SSO login for alice from 10.4.4.4",
+      "severity": 1,
+      "source": "auth",
+      "src_ip": "10.4.4.4",
+      "timestamp": "2026-09-17T09:00:00Z",
+      "user": "alice"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "process_start",
+      "host": "ws-14",
+      "id": "bb-002",
+      "metadata": {
+        "command_line": "sshd: alice@pts/0",
+        "parser": "process"
+      },
+      "process": "sshd",
+      "raw": "New process sshd on ws-14",
+      "severity": 2,
+      "source": "process",
+      "src_ip": null,
+      "timestamp": "2026-09-17T09:00:05Z",
+      "user": "alice"
+    },
+    {
+      "bytes_out": 4096,
+      "dst_ip": "10.4.0.1",
+      "event_type": "network_transfer",
+      "host": "ws-14",
+      "id": "bb-003",
+      "metadata": {
+        "demo_destination": false,
+        "parser": "network"
+      },
+      "process": null,
+      "raw": "4 KB DNS lookup from ws-14",
+      "severity": 2,
+      "source": "network",
+      "src_ip": "10.4.4.4",
+      "timestamp": "2026-09-17T09:02:30Z",
+      "user": null
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "ws-14",
+      "id": "bb-004",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Single mistyped password for alice from 10.4.4.4",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "10.4.4.4",
+      "timestamp": "2026-09-17T09:15:00Z",
+      "user": "alice"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_success",
+      "host": "ws-14",
+      "id": "bb-005",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Successful retry login for alice from 10.4.4.4",
+      "severity": 1,
+      "source": "auth",
+      "src_ip": "10.4.4.4",
+      "timestamp": "2026-09-17T09:15:07Z",
+      "user": "alice"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "process_start",
+      "host": "ws-14",
+      "id": "bb-006",
+      "metadata": {
+        "command_line": "chrome --profile-directory=Default",
+        "parser": "process"
+      },
+      "process": "chrome",
+      "raw": "New process chrome on ws-14",
+      "severity": 2,
+      "source": "process",
+      "src_ip": null,
+      "timestamp": "2026-09-17T09:20:00Z",
+      "user": "alice"
+    },
+    {
+      "bytes_out": 153600,
+      "dst_ip": "142.250.72.14",
+      "event_type": "network_transfer",
+      "host": "ws-14",
+      "id": "bb-007",
+      "metadata": {
+        "demo_destination": false,
+        "parser": "network"
+      },
+      "process": null,
+      "raw": "150 KB HTTPS request from ws-14",
+      "severity": 2,
+      "source": "network",
+      "src_ip": "10.4.4.4",
+      "timestamp": "2026-09-17T09:25:00Z",
+      "user": null
+    }
+  ],
+  "incidents": [],
+  "relationships": []
+}

