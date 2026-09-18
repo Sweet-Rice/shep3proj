@@ -40,6 +40,8 @@ Do not silently change this contract. Record a proposed change below and coordin
 
 Newest entries first.
 
+- **2026-09-18 — Student B:** B1–B3 are implemented and ready for cross-workstream review: generated contract types, validated/injectable API and demo clients, synthetic JSON uploads, incident summaries, UTC timeline, shared raw-evidence details, and keyboard-accessible React Flow relationships. API mode is the default; demo fallback is explicit. The frontend uses the canonical schema's uppercase incident severities and preserves backend relationship direction. Verification with Node **24.21.0** / npm **11.6.2**: `npm ci --offline --no-audit` passed; `npm test` passed **50/50**; `npm run build` passed (including generated-type drift checking and TypeScript); `npm run test:e2e` passed **10/10** at 1440px/390px; `npm run test:live` passed **1/1** against the unmodified FastAPI backend, covering sample analysis and synthetic file upload. A focused `npm run test:e2e -- --grep 'loads the dashboard'` rerun passed **2/2** and its desktop/mobile screenshots were visually reviewed. `git diff --check` passed. Setup and Student C handoff are in `frontend/README.md`; no backend/canonical-contract changes or Trello moves were made.
+- **2026-09-17 — Student B:** Claimed B1–B3 frontend implementation on `student-b/b1-react-shell`: React/Vite foundation, incident timeline/evidence, relationship graph, API uploads, and explicit demo fallback. Work is confined to `frontend/` plus this shared coordination log; the backend and canonical contract remain unchanged. Verification is pending.
 - **2026-09-16 — Student A:** Initialized Git after receiving permission and split work into scoped commits: `6046593` coordination, `2d26014` schemas/parsers, `deb6376` detection, `6b6a6d3` API contract, and `563b9f0` tests. The repository has no remote yet; public GitHub publication remains Student C/team work.
 - **2026-09-16 — Student A:** Reconciled Trello into distinct A1–A8 cards with complete Goal, Acceptance Criteria, Dependencies, and Blocks fields. All eight were moved to Review / Integration after local verification; none were marked Done. A1 also has a completed Acceptance Criteria checklist as the verification exemplar.
 - **2026-09-16 — Student A:** Backend implementation reached review-ready status. Added the FastAPI app, normalized event/incident/relationship models, auth/process/network parsers, deterministic four-stage correlation, sample analysis, JSON Schema export, and 16 behavioral tests. Verification: `ruff check backend` passed; `pytest --cov=app` passed 16/16 with 97% coverage. The API contract remains unchanged.
@@ -49,7 +51,7 @@ Newest entries first.
 ## Current integration status
 
 - Backend: implementation complete; awaiting cross-workstream review/integration (Student A).
-- Frontend: awaiting Student B.
+- Frontend: B1–B3 implementation and local acceptance verification complete; awaiting cross-workstream review/integration (Student B).
 - Datasets/CI/Docker/end-to-end QA: awaiting Student C.
 - Public GitHub repository: local Git is initialized with scoped commits; no remote/public repository is configured yet.
 - Trello: [Traceback — Cyber Incident Timeline Visualizer](https://trello.com/b/i3lpkJwJ/traceback-cyber-incident-timeline-visualizer); A1–A8 are in Review / Integration after verified acceptance criteria.
