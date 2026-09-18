@@ -27,8 +27,10 @@ timeout 60 bash -c 'until curl -sf http://localhost:8000/api/health > /dev/null;
 
 echo "--- running root integration tests: C1 datasets, health, frozen contract ---"
 python -m venv .integration-venv
-.integration-venv/bin/pip install -q -r integration/requirements.txt
-.integration-venv/bin/pytest integration -v
+VENV_BIN=.integration-venv/bin
+[ -d "$VENV_BIN" ] || VENV_BIN=.integration-venv/Scripts
+"$VENV_BIN/pip" install -q -r integration/requirements.txt
+"$VENV_BIN/pytest" integration -v
 
 echo "--- building and starting the production frontend container ---"
 docker compose up -d --build frontend
